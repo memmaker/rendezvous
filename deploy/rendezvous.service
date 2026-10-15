@@ -1,0 +1,15 @@
+[Unit]
+Description=rendezvous server for peer-to-peer games
+Requires=rendezvous.socket
+
+[Service]
+# stops 15 minutes after the last player left; the socket starts it again
+ExecStart=/usr/local/bin/rendezvous -idle 15m
+DynamicUser=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+RestrictAddressFamilies=AF_INET AF_INET6
+MemoryMax=128M

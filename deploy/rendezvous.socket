@@ -1,0 +1,13 @@
+# The rendezvous server, started on demand: systemd listens here and starts
+# rendezvous.service on the first connection. TCP takes the players (WebSocket or JSON
+# lines) and UDP their rendezvous packets, which tell their public endpoints for the hole
+# punching. Both ports must be open in the firewall.
+[Unit]
+Description=rendezvous server for peer-to-peer games (socket)
+
+[Socket]
+ListenStream=0.0.0.0:7781
+ListenDatagram=0.0.0.0:7781
+
+[Install]
+WantedBy=sockets.target
